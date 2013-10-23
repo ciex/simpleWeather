@@ -141,7 +141,7 @@ def display_hourly_forecast():
 	day_summary = response["hourly"]["summary"]
 
 	print()
-	print("Hourly forecast: {0}".format(day_summary))
+	print("Hourly forecast: {0}".format(day_summary.encode('utf-8')))
 
 	table = PrettyTable([
 		"Time",
@@ -172,7 +172,7 @@ def display_weekly_forecast():
 	week_summary = response["daily"]["summary"]
 
 	print()
-	print("Forecast for the coming week: {0}".format(week_summary))
+	print("Forecast for the coming week: {0}".format(week_summary.encode('utf-8')))
 
 	table = PrettyTable([
 		"Day",

@@ -110,10 +110,14 @@ def plot_weekly():
 	for day, low, high in zip(days, lows, highs):
 		plot_data.append(day + "\t" + low + "\t" + high + "\n")
 
+	# Find the next value mod 5 == 0 next to the plot data's minimum and maximum 
+	plot_min = int(round(min(float(x) for x in lows) / 5.0) * 5.0) - 5
+	plot_max = int(round(max(float(x) for x in highs) / 5.0) * 5.0) + 5
+
 	gnuplot = subprocess.Popen(['gnuplot','-persist'], stdin=subprocess.PIPE).stdin
 	plot_title = "'High and Low Temperatures, {0}'\n".format(period)
 
-	setup_gnuplot(gnuplot, plot_title, days[0], days[-1], 0, 100)
+	setup_gnuplot(gnuplot, plot_title, days[0], days[-1], plot_min, plot_max)
 
 	gnuplot.write("plot '-' u 1:2 w l, '-' u 1:3 w l\n".encode())
 	for line in plot_data: # iterate through once for the lows 

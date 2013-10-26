@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 """
 A simple command-line weather app using Python 3 and following modules:
 
